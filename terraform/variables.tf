@@ -2,7 +2,7 @@
 variable "project" {
   type        = string
   description = "The name of the project"
-  default     = "naor-CI-CD-Solution-TF"
+  default     = "papito-CI-CD-Solution-TF"
 }
 variable "createdBy" {
   type        = string
@@ -15,7 +15,7 @@ variable "createdBy" {
 variable "bucket_name" {
   type        = string
   description = "The name of the S3 bucket"
-  default     = "naor-test-bucket"
+  default     = "avior-test-bucket4"
 }
 variable "aws_region" {
   type        = string
@@ -32,14 +32,17 @@ variable "env" {
 
 data "aws_iam_policy_document" "bucket_policy" {
   statement {
-    sid       = "PublicReadGetObject"
-    effect    = "Allow"
-    actions   = ["s3:GetObject"]
-    resources = ["arn:aws:s3:::${var.bucket_name}/*"]
-
     principals {
-      type        = "*"
+      type        = "AWS"
       identifiers = ["*"]
     }
+    sid    = "PublicReadGetObject"
+    effect = "Allow"
+    actions = [
+      "s3:GetObject",
+    ]
+    resources = [
+      "arn:aws:s3:::${var.bucket_name}/*",
+    ]
   }
 }
