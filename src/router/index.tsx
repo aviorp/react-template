@@ -1,10 +1,16 @@
-import Page from "../layouts/Page";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "../pages/Home";
+import About from "../pages/About";
 
 const Router = () => {
   return (
-    <Page>
-      <BrowserRouter>{/* <Route path="/" Component={} /> */}</BrowserRouter>
-    </Page>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" Component={Home} />
+        <Route path="/about" Component={About} />
+      </Routes>
+    </BrowserRouter>
   );
 };
+
+export default Router;

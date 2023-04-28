@@ -1,7 +1,14 @@
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import { drawerWidth } from "../layouts/MainLayout";
-import { Toolbar, IconButton, Divider, List } from "@mui/material";
+import {
+  Toolbar,
+  IconButton,
+  Divider,
+  List,
+  ListItemButton,
+  Box
+} from "@mui/material";
 const WithStyleDrawer = styled(MuiDrawer, {
   shouldForwardProp: prop => prop !== "open"
 })(({ theme, open }) => ({
@@ -24,31 +31,45 @@ const WithStyleDrawer = styled(MuiDrawer, {
       width: theme.spacing(7),
       zIndex: 0,
       [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9)
+        width: theme.spacing(0)
       }
     })
   }
 }));
 
+type NavItem = {
+  label: string;
+  href: string;
+};
+
 type DrawerProps = {
   open: boolean;
+  items: NavItem[];
   toggleDrawer: () => void;
 };
 
-const Drawer = ({ open, toggleDrawer }: DrawerProps) => {
+const Drawer = ({ open, toggleDrawer, items }: DrawerProps) => {
   return (
     <WithStyleDrawer variant="permanent" open={open}>
-      <Toolbar
+      <Box
         sx={{
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
-          px: [1]
+          padding: theme => theme.spacing(0, 1)
         }}>
         <IconButton onClick={toggleDrawer}>X</IconButton>
-      </Toolbar>
-      <Divider />
-      <List component="nav">NAV</List>
+      </Box>
+      <List component="nav">
+        {items &&
+          items.map((item, index) => {
+            return (
+              <ListItemButton key={index} href={item.href}>
+                {item.label}
+              </ListItemButton>
+            );
+          })}
+      </List>
     </WithStyleDrawer>
   );
 };
