@@ -1,47 +1,9 @@
 
-# Configure the AWS Provider
-provider "aws" {
-  region = var.aws_region
-}
-
-# Create an S3 bucket
-resource "aws_s3_bucket" "bucket" {
-  bucket = var.bucket_name
-}
-
-resource "aws_s3_bucket_policy" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
-  policy = "${data.aws_iam_policy_document.bucket_policy.json}"
-
-}
-
-resource "aws_s3_bucket_website_configuration" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "index.html"
-  }
-
-}
-
-resource "aws_s3_bucket_public_access_block" "bucket" {
-  bucket = aws_s3_bucket.bucket.id
-
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
-  restrict_public_buckets = false
-
-}
-
 # Create a CloudFront distribution
 resource "aws_cloudfront_distribution" "cf_distribution" {
   origin {
-    domain_name = aws_s3_bucket.bucket.bucket_regional_domain_name
-    origin_id   = aws_s3_bucket.bucket.id
+    domain_name = var.aws_s3_bucket.bucket.bucket_regional_domain_name
+    origin_id   = var.aws_s3_bucket.bucket.id
 
     s3_origin_config {
       origin_access_identity = ""
@@ -56,7 +18,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = aws_s3_bucket.bucket.id
+    target_origin_id = var.aws_s3_bucket.bucket.id
 
     forwarded_values {
       query_string = false

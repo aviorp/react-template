@@ -25,7 +25,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build-output
-          path: build
+          path: dist
 
       - name: Restore cache
         uses: actions/cache@v2
@@ -55,7 +55,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: build-output
-          path: build
+          path: dist
 
       - name: Update S3 Bucket and trigger Cloudfront to update changes
         run: npm run aws-deploy
