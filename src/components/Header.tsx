@@ -2,6 +2,7 @@ import { Badge, IconButton, Toolbar, Typography } from "@mui/material";
 import { drawerWidth } from "../layouts/MainLayout";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
+import { Lightbulb, Menu } from "@mui/icons-material";
 type AppBarProps = {
   open: boolean;
   toggleDrawer: () => void;
@@ -43,7 +44,7 @@ const Header = ({ open, toggleDrawer, theme }: AppBarProps) => {
             marginRight: "36px",
             ...(open && { display: "none" })
           }}>
-          MENU
+          <Menu />
         </IconButton>
         <Typography
           component="h1"
@@ -55,7 +56,7 @@ const Header = ({ open, toggleDrawer, theme }: AppBarProps) => {
         </Typography>
         <IconButton color="inherit" onClick={toggleDrawer}>
           <Badge badgeContent={4} color="secondary">
-            Y!!
+            <Lightbulb />
           </Badge>
         </IconButton>
       </Toolbar>

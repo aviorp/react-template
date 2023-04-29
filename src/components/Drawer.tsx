@@ -1,19 +1,13 @@
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import { drawerWidth } from "../layouts/MainLayout";
-import {
-  Toolbar,
-  IconButton,
-  Divider,
-  List,
-  ListItemButton,
-  Box
-} from "@mui/material";
+import { IconButton, List, ListItemButton, Box } from "@mui/material";
+import { Close } from "@mui/icons-material";
 const WithStyleDrawer = styled(MuiDrawer, {
   shouldForwardProp: prop => prop !== "open"
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
-    position: "relative",
+    position: "fixed",
     height: "100vh",
     whiteSpace: "nowrap",
     width: drawerWidth,
@@ -29,7 +23,7 @@ const WithStyleDrawer = styled(MuiDrawer, {
         duration: theme.transitions.duration.leavingScreen
       }),
       width: theme.spacing(7),
-      zIndex: 0,
+      zIndex: 999,
       [theme.breakpoints.up("sm")]: {
         width: theme.spacing(0)
       }
@@ -56,9 +50,12 @@ const Drawer = ({ open, toggleDrawer, items }: DrawerProps) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
-          padding: theme => theme.spacing(0, 1)
+          paddingTop: ".7rem",
+          marginButton: "1rem"
         }}>
-        <IconButton onClick={toggleDrawer}>X</IconButton>
+        <IconButton onClick={toggleDrawer}>
+          <Close />
+        </IconButton>
       </Box>
       <List component="nav">
         {items &&

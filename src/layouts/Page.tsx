@@ -1,16 +1,18 @@
-import { CssBaseline } from "@mui/material";
-import { ReactNode } from "react";
+import { Box } from "@mui/material";
 
 type PageProps = {
-  children: ReactNode;
+  children: React.ReactNode;
 };
 
-const Page = ({ children }: PageProps) => {
+const Page: React.FC<PageProps> = ({ children }) => {
   return (
-    <div className="page">
-      <CssBaseline />
-      <div className="page__content">{children}</div>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column"
+      }}>
+      {children}
+    </Box>
   );
 };
 
