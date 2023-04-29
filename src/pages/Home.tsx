@@ -2,9 +2,6 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Typography from "@mui/material/Typography";
 import Page from "../layouts/Page";
-import { Box, CircularProgress } from "@mui/material";
-import { useQuery } from "react-query";
-import { getPosts } from "../api/posts";
 
 const Home = () => {
   return (
@@ -20,7 +17,6 @@ const Home = () => {
           </Typography>
         </CardHeader>
       </Card>
-      <pre>{postsQuery.data!}</pre>
     </Page>
   );
 };
