@@ -2,12 +2,12 @@ import { Box, CircularProgress } from "@mui/material";
 
 type PageProps = {
   children: React.ReactNode;
-  loading?: boolean;
+  isLoading?: boolean;
   isEmpty?: boolean;
 };
 
-const Page: React.FC<PageProps> = ({ children, loading }) => {
-  if (loading)
+const Page: React.FC<PageProps> = ({ children, isLoading, isEmpty }) => {
+  if (isLoading)
     return (
       <Box
         sx={{
@@ -18,6 +18,18 @@ const Page: React.FC<PageProps> = ({ children, loading }) => {
         <CircularProgress />
       </Box>
     );
+  if (isEmpty) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        }}>
+        <h1>Empty</h1>
+      </Box>
+    );
+  }
   return (
     <Box
       sx={{
