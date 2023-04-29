@@ -1,8 +1,16 @@
 import { styled } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import { drawerWidth } from "../layouts/MainLayout";
-import { IconButton, List, ListItemButton, Box } from "@mui/material";
+import {
+  IconButton,
+  List,
+  Box,
+  ListItemButton,
+  Typography
+} from "@mui/material";
 import { Close } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+
 const WithStyleDrawer = styled(MuiDrawer, {
   shouldForwardProp: prop => prop !== "open"
 })(({ theme, open }) => ({
@@ -43,16 +51,24 @@ type DrawerProps = {
 };
 
 const Drawer = ({ open, toggleDrawer, items }: DrawerProps) => {
+  const navigate = useNavigate();
+
+  const handleRoute = (href: string) => {
+    navigate(href);
+  };
   return (
     <WithStyleDrawer variant="permanent" open={open}>
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "flex-end",
-          paddingTop: ".7rem",
+          justifyContent: "space-between",
+          padding: ".7rem",
           marginButton: "1rem"
         }}>
+        <Typography variant="h5">
+          Papito<span>UI</span>
+        </Typography>
         <IconButton onClick={toggleDrawer}>
           <Close />
         </IconButton>
@@ -61,7 +77,9 @@ const Drawer = ({ open, toggleDrawer, items }: DrawerProps) => {
         {items &&
           items.map((item, index) => {
             return (
-              <ListItemButton key={index} href={item.href}>
+              <ListItemButton
+                key={index}
+                onClick={() => handleRoute(item.href)}>
                 {item.label}
               </ListItemButton>
             );

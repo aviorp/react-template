@@ -1,19 +1,22 @@
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Container, Typography } from "@mui/material";
 
 type PageProps = {
   children: React.ReactNode;
   isLoading?: boolean;
   isEmpty?: boolean;
+  title: string;
 };
 
-const Page: React.FC<PageProps> = ({ children, isLoading, isEmpty }) => {
+const Page: React.FC<PageProps> = ({ children, isLoading, isEmpty, title }) => {
   if (isLoading)
     return (
       <Box
         sx={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
+          marginTop: "50%"
         }}>
         <CircularProgress />
       </Box>
@@ -31,13 +34,30 @@ const Page: React.FC<PageProps> = ({ children, isLoading, isEmpty }) => {
     );
   }
   return (
-    <Box
+    <Container
+      maxWidth="xl"
       sx={{
+        padding: "1rem 2rem",
+        marginTop: "2rem",
         display: "flex",
         flexDirection: "column"
       }}>
-      {children}
-    </Box>
+      <Typography
+        variant="h4"
+        sx={{
+          marginBottom: "2rem",
+          alignSelf: "start",
+          display: "block"
+        }}>
+        {title}
+      </Typography>
+      <Box
+        sx={{
+          width: "100%"
+        }}>
+        {children}
+      </Box>
+    </Container>
   );
 };
 

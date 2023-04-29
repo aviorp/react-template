@@ -1,26 +1,21 @@
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import Typography from "@mui/material/Typography";
 import Page from "../layouts/Page";
 import { useQuery } from "react-query";
 import { getPosts } from "../api/posts";
+import { Card } from "@mui/material";
 
 const Home = () => {
-  const postsQuery = useQuery(["posts"], getPosts);
+  const postsQuery = useQuery({
+    queryKey: ["posts"],
+    queryFn: getPosts,
+    refetchOnWindowFocus: true
+  });
   return (
     <Page
+      title="Home"
       isLoading={postsQuery.isLoading}
       isEmpty={postsQuery.isFetched && postsQuery?.data?.length <= 0}>
-      <Card
-        sx={{
-          minWidth: 345,
-          minHeight: 300
-        }}>
-        <CardHeader>
-          <Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
-            Word of the Day
-          </Typography>
-        </CardHeader>
+      <Card>
+        <h1>Home</h1>
       </Card>
     </Page>
   );

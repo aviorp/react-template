@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 import { Lightbulb, Menu } from "@mui/icons-material";
 type AppBarProps = {
   open: boolean;
-  toggle: () => void;
+  toggleDrawer: () => void;
   theme: any;
 };
 
@@ -27,30 +27,31 @@ const AppBarStyled = styled(MuiAppBar, {
   })
 }));
 
-const Header = ({ open, toggle, theme }: AppBarProps) => {
+const Header = ({ open, toggleDrawer, theme }: AppBarProps) => {
   return (
-    <AppBarStyled position="absolute" open={open} theme={theme} toggle={toggle}>
-      <Toolbar>
+    <AppBarStyled
+      position="absolute"
+      open={open}
+      theme={theme}
+      toggleDrawer={toggleDrawer}>
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "space-between"
+        }}>
         <IconButton
           edge="start"
           color="inherit"
           aria-label="open drawer"
-          onClick={toggle}
+          onClick={toggleDrawer}
           sx={{
             marginRight: "36px",
             ...(open && { display: "none" })
           }}>
           <Menu />
         </IconButton>
-        <Typography
-          component="h1"
-          variant="h6"
-          color="inherit"
-          noWrap
-          sx={{ flexGrow: 1 }}>
-          Dashboard
-        </Typography>
-        <IconButton color="inherit" onClick={toggle}>
+
+        <IconButton color="inherit" onClick={toggleDrawer}>
           <Badge badgeContent={4} color="secondary">
             <Lightbulb />
           </Badge>

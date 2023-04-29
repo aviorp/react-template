@@ -1,12 +1,15 @@
 import "./App.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import MainLayout from "./layouts/MainLayout";
+import { AuthProvider } from "./contexts/AuthContext";
 
 export default function App() {
   return (
     <>
-      <CssBaseline />
-      <MainLayout />
+      <AuthProvider>
+        <CssBaseline />
+        <MainLayout />
+      </AuthProvider>
     </>
   );
 }
