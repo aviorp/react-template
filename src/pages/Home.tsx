@@ -2,10 +2,20 @@ import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import Typography from "@mui/material/Typography";
 import Page from "../layouts/Page";
+import { useQuery } from "@tanstack/react-query";
+import { getPosts } from "../api/posts";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
   return (
-    <Page>
+    <Page loading={loading}>
       <Card
         sx={{
           minWidth: 345,

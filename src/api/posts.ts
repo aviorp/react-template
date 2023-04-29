@@ -9,6 +9,9 @@ export const getPosts = async () => {
 };
 
 export const createPost = async (post: any) => {
-  const { data } = await axios.post("http://localhost:3300/users", post);
+  const { data } = await axios.post(
+    "https://jsonplaceholder.typicode.com/posts",
+    post
+  );
   return data;
 };

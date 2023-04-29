@@ -1,11 +1,11 @@
 import { Badge, IconButton, Toolbar, Typography } from "@mui/material";
 import { drawerWidth } from "../layouts/MainLayout";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import MuiAppBar from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
 import { Lightbulb, Menu } from "@mui/icons-material";
 type AppBarProps = {
   open: boolean;
-  toggleDrawer: () => void;
+  toggle: () => void;
   theme: any;
 };
 
@@ -27,19 +27,15 @@ const AppBarStyled = styled(MuiAppBar, {
   })
 }));
 
-const Header = ({ open, toggleDrawer, theme }: AppBarProps) => {
+const Header = ({ open, toggle, theme }: AppBarProps) => {
   return (
-    <AppBarStyled
-      position="absolute"
-      open={open}
-      theme={theme}
-      toggleDrawer={toggleDrawer}>
+    <AppBarStyled position="absolute" open={open} theme={theme} toggle={toggle}>
       <Toolbar>
         <IconButton
           edge="start"
           color="inherit"
           aria-label="open drawer"
-          onClick={toggleDrawer}
+          onClick={toggle}
           sx={{
             marginRight: "36px",
             ...(open && { display: "none" })
@@ -54,7 +50,7 @@ const Header = ({ open, toggleDrawer, theme }: AppBarProps) => {
           sx={{ flexGrow: 1 }}>
           Dashboard
         </Typography>
-        <IconButton color="inherit" onClick={toggleDrawer}>
+        <IconButton color="inherit" onClick={toggle}>
           <Badge badgeContent={4} color="secondary">
             <Lightbulb />
           </Badge>

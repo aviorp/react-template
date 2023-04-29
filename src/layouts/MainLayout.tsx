@@ -12,12 +12,12 @@ const menuItems = [
   { label: "Contact", href: "/contact" }
 ];
 const MainLayout = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const handleDrawer = () => setOpen(!open);
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Header open={open} toggleDrawer={handleDrawer} theme={mdTheme} />
+      <Header open={open} toggle={handleDrawer} theme={mdTheme} />
       <Drawer open={open} toggleDrawer={handleDrawer} items={menuItems} />
       <Router />
     </ThemeProvider>

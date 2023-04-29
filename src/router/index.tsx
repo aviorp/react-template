@@ -5,8 +5,8 @@ import About from "../pages/About";
 const Router = () => {
   return (
     <Routes>
-      <Route path="/" Component={Home} />
-      <Route path="/about/:id" Component={About} />
+      <Route path="/" element={<Home />} />
+      <Route path="/about/:id" element={<About />} />
     </Routes>
   );
 };
