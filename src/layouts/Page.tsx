@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { Box, CircularProgress, Container, Typography } from "@mui/material";
+import { Box, LinearProgress, Typography } from "@mui/material";
 
 type PageProps = {
   children: ReactNode;
@@ -11,19 +11,13 @@ type PageProps = {
 const Page: FC<PageProps> = ({ children, isLoading, isEmpty, title }) => {
   if (isLoading)
     return (
-      <Container
-        maxWidth="xl"
+      <LinearProgress
         sx={{
-          paddingTop: "35%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-        <Box>
-          <CircularProgress />
-        </Box>
-      </Container>
+          paddingTop: "4.4em",
+          width: "100%",
+          height: "3px"
+        }}
+      />
     );
   if (isEmpty) {
     return (
@@ -38,10 +32,9 @@ const Page: FC<PageProps> = ({ children, isLoading, isEmpty, title }) => {
     );
   }
   return (
-    <Container
-      maxWidth="xl"
+    <Box
       sx={{
-        paddingTop: "5em",
+        padding: " 5em 1.5em",
         backgroundColor: "#fff"
       }}>
       <Typography variant="h4">{title}</Typography>
@@ -51,7 +44,7 @@ const Page: FC<PageProps> = ({ children, isLoading, isEmpty, title }) => {
         }}>
         {children}
       </Box>
-    </Container>
+    </Box>
   );
 };
 

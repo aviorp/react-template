@@ -8,6 +8,7 @@ import {
 import { Close } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { WithStyleDrawer } from "./WithStyleDrawer";
+import { useAuth } from "../../hooks";
 
 type NavItem = {
   label: string;
@@ -26,6 +27,12 @@ const Drawer = ({ open, toggleDrawer, items }: DrawerProps) => {
   const handleRoute = (href: string) => {
     navigate(href);
   };
+  const onLogout = () => {
+    logOut();
+    toggleDrawer();
+  };
+  const { logOut } = useAuth();
+
   return (
     <WithStyleDrawer variant="permanent" open={open}>
       <Box
@@ -54,6 +61,18 @@ const Drawer = ({ open, toggleDrawer, items }: DrawerProps) => {
               </ListItemButton>
             );
           })}
+        <ListItemButton
+          onClick={onLogout}
+          sx={{
+            marginTop: "80vh",
+            backgroundColor: "error.main",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "error.dark"
+            }
+          }}>
+          Logout
+        </ListItemButton>
       </List>
     </WithStyleDrawer>
   );

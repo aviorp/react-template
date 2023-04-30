@@ -1,25 +1,32 @@
 import { createContext, ReactNode, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // type definition for the context
-type UserDataInterface = { initialized: boolean; loggedIn: boolean; user: any };
+type UserDataI = { initialized: boolean; loggedIn: boolean; user: any };
 
-type MyContextInterface = {
-  authInfo: UserDataInterface;
+export type AuthContextI = {
+  authInfo: UserDataI | undefined;
   initialize: () => Promise<boolean>;
   logOut: () => Promise<boolean>;
   logIn: () => Promise<boolean>;
 };
 
-export const AuthContext = createContext<MyContextInterface | any>({});
+export const AuthContext = createContext<AuthContextI | any>({});
 
 type Props = {
   children: ReactNode;
 };
 
 export const AuthProvider = ({ children }: Props) => {
-  const [authInfo, setAuthInfo] = useState<UserDataInterface>();
+  const [authInfo, setAuthInfo] = useState<UserDataI>({
+    initialized: false,
+    loggedIn: false,
+    user: null
+  });
 
-  const initialize = async () => {
+  const navigate = useNavigate();
+
+  const initialize = () => {
     const token: string = localStorage.token;
     if (token) {
       setAuthInfo({
@@ -32,36 +39,37 @@ export const AuthProvider = ({ children }: Props) => {
         }
       });
     }
-  };
-  const logIn = async () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        setAuthInfo({
-          initialized: true,
-          loggedIn: true,
-          user: {
-            name: "John Doe",
-            email: ""
-          }
-        });
-
-        localStorage.token = {
-          name: "John Doe"
-        };
-        resolve(true);
-      }, 3000);
+    setAuthInfo({
+      initialized: true,
+      loggedIn: false,
+      user: {
+        name: "Paul Doe",
+        email: "pauldoe@example.com"
+      }
     });
   };
+  const logIn = async () => {
+    setTimeout(() => {
+      setAuthInfo({
+        initialized: true,
+        loggedIn: true,
+        user: {
+          name: "John Doe",
+          email: ""
+        }
+      });
+
+      localStorage.token = {
+        name: "John Doe"
+      };
+      navigate("/");
+    }, 1500);
+  };
   const logOut = async () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        setAuthInfo({
-          initialized: true,
-          loggedIn: false,
-          user: null
-        });
-        resolve(true);
-      }, 3000);
+    setAuthInfo({
+      initialized: true,
+      loggedIn: false,
+      user: null
     });
   };
 
