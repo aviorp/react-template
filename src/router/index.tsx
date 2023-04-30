@@ -3,7 +3,7 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import Post from "../pages/Post";
 
-const Router = () => {
+function Router(): JSX.Element {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -12,6 +12,6 @@ const Router = () => {
       <Route path="/posts/:id" element={<Post />} />
     </Routes>
   );
-};
+}
 
 export default Router;
