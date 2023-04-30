@@ -5,22 +5,25 @@ type PageProps = {
   children: ReactNode;
   isLoading?: boolean;
   isEmpty?: boolean;
-  title: string;
+  title?: string;
 };
 
 const Page: FC<PageProps> = ({ children, isLoading, isEmpty, title }) => {
   if (isLoading)
     return (
-      <Box
+      <Container
+        maxWidth="2xl"
         sx={{
+          paddingTop: "35%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
-          marginTop: "50%"
+          alignItems: "center"
         }}>
-        <CircularProgress />
-      </Box>
+        <Box>
+          <CircularProgress />
+        </Box>
+      </Container>
     );
   if (isEmpty) {
     return (
@@ -36,25 +39,15 @@ const Page: FC<PageProps> = ({ children, isLoading, isEmpty, title }) => {
   }
   return (
     <Container
-      maxWidth="xl"
+      maxWidth="2xl"
       sx={{
-        padding: "1rem 2rem",
-        marginTop: "2rem",
-        display: "flex",
-        flexDirection: "column"
+        paddingTop: "5em",
+        backgroundColor: "#fff"
       }}>
-      <Typography
-        variant="h4"
-        sx={{
-          marginBottom: "2rem",
-          alignSelf: "start",
-          display: "block"
-        }}>
-        {title}
-      </Typography>
+      <Typography variant="h4">{title}</Typography>
       <Box
         sx={{
-          width: "100%"
+          marginTop: "2em"
         }}>
         {children}
       </Box>

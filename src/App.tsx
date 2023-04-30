@@ -6,8 +6,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 export default function App() {
   return (
     <>
+      <CssBaseline />
       <AuthProvider>
-        <CssBaseline />
         <MainLayout />
       </AuthProvider>
     </>

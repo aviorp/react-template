@@ -11,9 +11,10 @@ const Post = () => {
     enabled: !!id
   });
   return (
-    <Page title="Post" isLoading={isLoading}>
-      <h1>Post {id}</h1>
-      <pre>{post?.body!}</pre>
+    <Page isLoading={isLoading}>
+      <h1>Post #{id}</h1>
+      <h2>{post?.title}</h2>
+      <pre>{post?.body}</pre>
     </Page>
   );
 };

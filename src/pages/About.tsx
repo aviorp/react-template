@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
+import Page from "../layouts/Page";
 
 const About = () => {
   const { id } = useParams();
   return (
-    <div>
+    <Page title="About" isLoading={false}>
       <h1>About {id}</h1>
-    </div>
+    </Page>
   );
 };
 

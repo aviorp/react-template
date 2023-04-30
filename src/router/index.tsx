@@ -9,7 +9,7 @@ function Router(): JSX.Element {
       <Route path="/" element={<Home />} />
       <Route path="/about/:id" element={<About />} />
       <Route path="/contact" element={<div>Contact</div>} />
-      <Route path="/posts/:id" element={<Post />} />
+      <Route path="/post/:id" element={<Post />} />
     </Routes>
   );
 }

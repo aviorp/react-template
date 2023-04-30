@@ -18,7 +18,11 @@ function MainLayout(): JSX.Element {
       <Drawer open={open} toggleDrawer={handleDrawer} items={MENU_ITEMS} />
       <Box
         sx={{
-          marginLeft: open ? "0px" : `-${DRAWER_WIDTH}px`
+          marginLeft: open ? `${DRAWER_WIDTH}px` : 0,
+          transition: mdTheme.transitions.create("margin", {
+            easing: mdTheme.transitions.easing.sharp,
+            duration: mdTheme.transitions.duration.leavingScreen
+          })
         }}>
         <Router />
       </Box>
