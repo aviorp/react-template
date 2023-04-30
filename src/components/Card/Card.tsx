@@ -28,7 +28,7 @@ const Card: FC<CardPropsI> = ({ content, subheader, title, id }) => {
         <CardHeader title={title} subheader={subheader} />
         <Divider />
         <CardContent>
-          <Typography variant="p">{content}</Typography>
+          <p>{content}</p>
         </CardContent>
         <CardActions>
           <Button variant="contained" onClick={goToPost(id)}>

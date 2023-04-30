@@ -12,7 +12,7 @@ const Page: FC<PageProps> = ({ children, isLoading, isEmpty, title }) => {
   if (isLoading)
     return (
       <Container
-        maxWidth="2xl"
+        maxWidth="xl"
         sx={{
           paddingTop: "35%",
           display: "flex",
@@ -39,7 +39,7 @@ const Page: FC<PageProps> = ({ children, isLoading, isEmpty, title }) => {
   }
   return (
     <Container
-      maxWidth="2xl"
+      maxWidth="xl"
       sx={{
         paddingTop: "5em",
         backgroundColor: "#fff"
