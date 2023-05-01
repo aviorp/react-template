@@ -13,9 +13,7 @@ const Page: FC<PageProps> = ({ children, isLoading, isEmpty, title }) => {
     return (
       <LinearProgress
         sx={{
-          paddingTop: "4.4em",
-          width: "100%",
-          height: "3px"
+          paddingTop: "4.3rem"
         }}
       />
     );

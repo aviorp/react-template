@@ -21,11 +21,8 @@ export const WithStyleDrawer = styled(MuiDrawer, {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen
       }),
-      width: theme.spacing(7),
-      zIndex: 999,
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(0)
-      }
+      width: theme.spacing(0),
+      zIndex: 999
     })
   }
 }));

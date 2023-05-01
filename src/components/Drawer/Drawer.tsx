@@ -64,7 +64,7 @@ const Drawer = ({ open, toggleDrawer, items }: DrawerProps) => {
         <ListItemButton
           onClick={onLogout}
           sx={{
-            marginTop: "80vh",
+            marginTop: "75vh",
             backgroundColor: "error.main",
             color: "#fff",
             "&:hover": {

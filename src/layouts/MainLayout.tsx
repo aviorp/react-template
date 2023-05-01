@@ -1,13 +1,11 @@
 import Drawer from "../components/Drawer";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Router from "../router";
 import { Box } from "@mui/material";
 import { DRAWER_WIDTH, MENU_ITEMS } from "../utils/constants";
 import { useAuth } from "../hooks";
-
-const mdTheme = createTheme();
+import MuiThemeProvider, { muiTheme } from "../contexts/ThemeContext";
 
 function MainLayout(): JSX.Element {
   const [open, setOpen] = useState(false);
@@ -25,10 +23,10 @@ function MainLayout(): JSX.Element {
   }, []);
 
   return (
-    <ThemeProvider theme={mdTheme}>
+    <MuiThemeProvider>
       {loggedIn && (
         <>
-          <Header open={open} toggleDrawer={handleDrawer} theme={mdTheme} />
+          <Header open={open} toggleDrawer={handleDrawer} theme={muiTheme} />
           <Drawer open={open} toggleDrawer={handleDrawer} items={MENU_ITEMS} />
         </>
       )}
@@ -36,14 +34,14 @@ function MainLayout(): JSX.Element {
       <Box
         sx={{
           marginLeft: open ? `${DRAWER_WIDTH}px` : 0,
-          transition: mdTheme.transitions.create("margin", {
-            easing: mdTheme.transitions.easing.sharp,
-            duration: mdTheme.transitions.duration.leavingScreen
+          transition: muiTheme.transitions.create("margin", {
+            easing: muiTheme.transitions.easing.sharp,
+            duration: muiTheme.transitions.duration.leavingScreen
           })
         }}>
         <Router />
       </Box>
-    </ThemeProvider>
+    </MuiThemeProvider>
   );
 }
 
